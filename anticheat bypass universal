@@ -1,0 +1,67 @@
+local meta = getrawmetatable(game)
+local backup = meta.__newindex
+
+meta.__newindex = newcclosure(function(inst,prop,val)
+	local oldcf = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+
+	local lowerClass = string.lower(inst.ClassName)
+	local lowerName = string.lower(inst.Name)
+
+	if lowerName:find("cheat") and getnamecallmethod() == ("FireServer" or "InvokeServer" or "FireClient" or "FireAllClients") then
+		return wait(math.huge)
+	elseif lowerName:find("hax") and getnamecallmethod() == ("FireServer" or "InvokeServer" or "FireClient" or "FireAllClients") then
+		return wait(math.huge)
+	elseif lowerName:find("hack") and getnamecallmethod() == ("FireServer" or "InvokeServer" or "FireClient" or "FireAllClients") then
+		return wait(math.huge)
+	elseif lowerName:find("anti") and getnamecallmethod() == ("FireServer" or "InvokeServer" or "FireClient" or "FireAllClients") then
+		return wait(math.huge)
+	elseif lowerName:find("cheet") and getnamecallmethod() == ("FireServer" or "InvokeServer" or "FireClient" or "FireAllClients") then
+		return wait(math.huge)
+	elseif lowerName:find("hop") and getnamecallmethod() == ("FireServer" or "InvokeServer" or "FireClient" or "FireAllClients") then
+		return wait(math.huge)
+	elseif lowerName:find("lIl") and getnamecallmethod() == ("FireServer" or "InvokeServer" or "FireClient" or "FireAllClients") then
+		return wait(math.huge)
+	elseif lowerName:find("bro") and getnamecallmethod() == ("FireServer" or "InvokeServer" or "FireClient" or "FireAllClients") then
+		return wait(math.huge)
+	end
+
+	if inst:IsA("Humanoid") then
+		if prop == "WalkSpeed" then
+			return 16
+		elseif prop == "JumpPower" then
+			return 70
+		elseif prop == "JumpHeight" then
+			return 7.2
+		elseif prop == "Sit" then
+			return false
+		elseif prop == "PlatformStand" then
+			return false
+		elseif prop == "Health" then
+			return 100
+		elseif prop == "MaxHealth" then
+			return 100
+		end
+	elseif inst:IsA("Player") then
+		if getnamecallmethod() == "Kick" then
+			return wait(math.huge)
+		elseif getnamecallmethod() == "Remove" then
+			return wait(math.huge)
+		elseif getnamecallmethod() == "Destroy" then
+			return wait(math.huge)
+		end
+	elseif inst:IsA("BasePart") and inst.Parent == game.Players.LocalPlayer.Character then
+		if prop == "CFrame" then
+			return oldcf
+		end
+	end
+	
+	if string.lower(getnamecallmethod()):find("network") then
+		return wait(math.huge)
+	elseif string.lower(getnamecallmethod()):find("owner") then
+		return wait(math.huge)
+	end
+
+	return backup(inst,prop,val)
+end)
+
+print("AnticheatBypass ran; Universal")
