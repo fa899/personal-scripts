@@ -1,1 +1,37 @@
-
+-- DO NOT REMOVE THIS!
+writefile("OOF.ogg",game:HttpGet("https://raw.githubusercontent.com/fa899/personal-scripts/main/Bring%20Back%20OOF/fix")) -- THIS FIXES THE SOUND. IF YOU REMOVED A FILE CALLED "OOF", THIS SCRIPT WILL *NOT* WORK!
+local getasset = getasset or custom_asset or get_asset or getcustomasset or get_custom_asset or getcustom_asset
+-- ^ just incase some exploit supports other function that is like getasset
+-- A magic function
+function onDied(humanoid: Humanoid)
+	-- humanoid.Died:Connect(onDied)
+	-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Example
+	humanoid.Died:Connect(function()
+		local Died = humanoid.Parent:WaitForChild("HumanoidRootPart"):WaitForChild("Died")
+		Died.SoundId = getasset("OOF.ogg")
+	end)
+end
+-- Grab localplayer
+local Player = game.Players.LocalPlayer
+local modelv2 = Player.Character
+-- Make your character that respawned when died
+Player.CharacterAdded:Connect(function(model)
+	local Humanoid = model:WaitForChild("Humanoid")
+	onDied(Humanoid)
+end)
+-- Make your character make oof sounds when died
+local Humanoidd = modelv2:WaitForChild("Humanoid")
+onDied(Humanoidd)
+-- Make oof sounds whenever someone dies
+for i,v in pairs(game.Players:GetPlayers()) do
+	if v["Character"] ~= nil and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health ~= 0 then
+		onDied(v.Character.Humanoid)
+	end
+end
+-- Make oof sounds whenever someone joins and dies
+game.Players.PlayerAdded:Connect(function(plr)
+	plr.CharacterAdded:Connect(function(model)
+		local Humanoid = model:WaitForChild("Humanoid")
+		onDied(Humanoid)
+	end)
+end)
