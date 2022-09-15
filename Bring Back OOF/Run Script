@@ -1,5 +1,6 @@
 -- DO NOT REMOVE THIS!
-writefile("OOF.mp4",game:HttpGet("https://github.com/fa899/personal-scripts/raw/3b32890cb4152970ee20340d6fe335fe49cc5659/Bring%20Back%20OOF/OOF.mp4")) -- THIS FIXES THE SOUND. IF YOU REMOVED A FILE CALLED "OOF", THIS SCRIPT WILL *NOT* WORK!
+writefile = writefile or write_file
+writefile("OOF.mp3",game:HttpGet("https://github.com/fa899/personal-scripts/raw/3b32890cb4152970ee20340d6fe335fe49cc5659/Bring%20Back%20OOF/OOF.mp3")) -- THIS FIXES THE SOUND. IF YOU REMOVED A FILE CALLED "OOF", THIS SCRIPT WILL *NOT* WORK!
 local getasset = getasset or custom_asset or get_asset or getcustomasset or get_custom_asset or getcustom_asset
 -- ^ just incase some exploit supports other function that is like getasset
 -- A magic function
@@ -8,8 +9,9 @@ function onDied(humanoid: Humanoid)
 	-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Example
 	humanoid.Died:Connect(function()
 		local Died = humanoid.Parent:WaitForChild("HumanoidRootPart"):WaitForChild("Died")
-		Died.SoundId = getasset("OOF.mp4")
+		Died.SoundId = getasset("OOF.mp3")
 	end)
+	-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ Basic functions
 end
 -- Grab localplayer
 local Player = game.Players.LocalPlayer
